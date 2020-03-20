@@ -2,9 +2,15 @@ from django.shortcuts import render
 
 
 def index(request):
-    return render(request, "pages/index.html")
+    context = {
+        'home_active': True
+    }
+    return render(request, "pages/index.html", context)
 
 
 
 def about(request):
-    return render(request, "pages/about.html")
+    context = {
+        'about_active': True
+    }
+    return render(request, "pages/about.html", context)
