@@ -1,12 +1,17 @@
 from django.shortcuts import render
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Listing
 
 
 def listings(request):
-    listings = Listing.objects.all()
+    listings = Listing.objects.filter(is_published=True).order_by('-list_date')
+
+    paginator = Paginator(listings, 6)
+    page = request.GET.get('page')
+    paged_listings = paginator.get_page(page)
 
     context = {
-        'listings': listings,
+        'listings': paged_listings,
         'listings_active': True
     }
     return render(request, 'listings/listings.html', context)
