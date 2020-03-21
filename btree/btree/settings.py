@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
 
     # local apps
+    'accounts.apps.AccountsConfig',
     'pages.apps.PagesConfig',
     'listings.apps.ListingsConfig',
     'realtors.apps.RealtorsConfig',
