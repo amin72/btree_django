@@ -21,16 +21,23 @@
       </ul>
 
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item mr-3">
-          <a class="nav-link" href="#">
-            <i class="fas fa-user-plus"></i> Register</a>
-        </li>
-        <li class="nav-item mr-3">
-          <a class="nav-link" href="#">
-            <i class="fas fa-sign-in-alt"></i>
-
-            Login</a>
-        </li>
+        {% if request.user.is_authenticated %}
+          <li class="nav-item mr-3">
+            <a class="nav-link" href="{% url 'accounts:logout' %}">
+              <i class="fas fa-sign-out-alt"></i>
+              Logout</a>
+          </li>
+        {% else %}
+          <li class="nav-item mr-3">
+            <a class="nav-link {% if register_active %}active{% endif %}" href="{% url 'accounts:register' %}">
+              <i class="fas fa-user-plus"></i> Register</a>
+          </li>
+          <li class="nav-item mr-3">
+            <a class="nav-link {% if login_active %}active{% endif %}" href="{% url 'accounts:login' %}">
+              <i class="fas fa-sign-in-alt"></i>
+              Login</a>
+          </li>
+        {% endif %}
       </ul>
     </div>
   </div>
