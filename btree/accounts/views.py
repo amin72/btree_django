@@ -29,9 +29,11 @@ def login(request):
 
 
 def logout(request):
-    context = {}
-    return redirect('pages:index')
-
+    if request.method == 'POST':
+        auth.logout(request)
+        messages.success(request, "You are logged out")
+        return redirect('pages:index')
+    
 
 
 def register(request):
