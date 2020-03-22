@@ -23,9 +23,18 @@
       <ul class="navbar-nav ml-auto">
         {% if request.user.is_authenticated %}
           <li class="nav-item mr-3">
-            <a class="nav-link" href="{% url 'accounts:logout' %}">
+            <a class="nav-link" href="javascript:{document.getElementById('logout').submit()}">
               <i class="fas fa-sign-out-alt"></i>
               Logout</a>
+          </li>
+          <li class="nav-item mr-3">
+            <a class="nav-link {% if dashboard_active %}active{% endif %}" href="{% url 'accounts:dashboard' %}">
+              <i class="fas fa-user-plus"></i> Dashboard</a>
+
+            <form id="logout" action="{% url 'accounts:logout' %}" method="post">
+              {% csrf_token %}
+              <input type="hidden">
+            </form>
           </li>
         {% else %}
           <li class="nav-item mr-3">
