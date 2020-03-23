@@ -34,8 +34,8 @@ def contact(request):
 
         send_mail(
             'Property Listing Inquiry',
-            f'There has been an inquiry for "{listing}".' \
-                'Sign into the admin panel for more info',
+            'There has been an inquiry for "{listing}".' \
+                'Sign into the admin panel for more info'.format(listing),
             'webmaster@btreecompany.com',
             [realtor_email],
             fail_silently=False,
