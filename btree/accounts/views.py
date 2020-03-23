@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib import auth
+from contacts.models import Contact
 
 
 User = get_user_model()
@@ -69,7 +70,11 @@ def register(request):
 
 
 def dashboard(request):
+    inquiries = Contact.objects.filter(user_id=request.user.id) \
+        .order_by('-contact_date')
+
     context = {
+        'inquiries': inquiries,
         'dashboard_active': True
     }
     return render(request, 'accounts/dashboard.html', context)
