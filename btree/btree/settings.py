@@ -35,8 +35,11 @@ debug = config.get('debug', 'DEBUG')
 DEBUG = debug == 'True'
 
 # read ALLOWED_HOSTS from settings
-hosts = config.get('hosts', 'ALLOWED_HOSTS')
-ALLOWED_HOSTS = hosts.split(', ')
+if DEBUG:
+    ALLOWED_HOSTS = []
+else:
+    hosts = config.get('hosts', 'ALLOWED_HOSTS')
+    ALLOWED_HOSTS = hosts.split(', ')
 
 
 # Application definition
