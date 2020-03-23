@@ -24,3 +24,4 @@ static/
 venv/
 db.sqlite3
 media
+settings.ini
