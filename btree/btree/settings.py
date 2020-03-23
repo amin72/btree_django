@@ -30,9 +30,13 @@ config.read(config_path)
 SECRET_KEY = 'ma^n8^r@9ykl$v2k=5*0gbh5my40%%$d#imh*2!3vh+p+-fj@#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# read DEBUG from settings
+debug = config.get('debug', 'DEBUG')
+DEBUG = debug == 'True'
 
-ALLOWED_HOSTS = []
+# read ALLOWED_HOSTS from settings
+hosts = config.get('hosts', 'ALLOWED_HOSTS')
+ALLOWED_HOSTS = hosts.split(', ')
 
 
 # Application definition
